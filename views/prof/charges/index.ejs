@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <title>
+    <%= title %>
+  </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Custom fonts for this template-->
+  <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="../css/loader.css" rel="stylesheet" type="text/css">
+  <link href="../fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
+  <link href="../css/css.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Custom styles for this template-->
+  <link href="../css/sb-admin-2.css" rel="stylesheet">
+  <link href="../css/main.css" rel="stylesheet">
+  <link href="../css/dataTables.bootstrap5.min.css" rel="stylesheet">
+  <link href="../css/admin.css" rel="stylesheet" type="text/css">
+  <link href="../css/dropzone.css" rel="stylesheet" type="text/css">
+  <link href="../css/popupForm.css" rel="stylesheet" type="text/css">
+  <link href="../css/popup2.css" rel="stylesheet" type="text/css">
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <li>
+        <div class="sidebar-brand d-flex align-items-center">
+          <div class="sidebar-brand-icon">
+            <img src="../images/user.png" alt="Omar" width="50" height="50" style="float: left;">
+          </div>
+          <div class="sidebar-brand-text mx-3">
+            <span style="font-size: 12px;margin: 5px;">
+              <%= userPrenom %>
+                <%= userNom %>
+            </span>
+          </div>
+        </div>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item">
+        <a class="nav-link" href="/dashboard">
+          <i class="fas fa-home fa-fw "></i>
+          <span>Dashboard</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Gestion
+      </div>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="/prof/charges">
+          <i class="fas fa-tasks"></i>
+          <span>Charges</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/prof/emplois">
+          <i class="far fa-calendar-alt"></i>
+          <span>Emploits</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/prof/absences">
+          <i class="fas fa-user-check"></i>
+          <span>Absences</span></a>
+      </li>
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false" data-target="#hhhh">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                  <%= userPrenom %>
+                    <%= userNom %>
+                </span>
+                <img class="img-profile rounded-circle" src="../images/user.png">
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown"
+                id="hhhh">
+                <a class="dropdown-item" href="/prof/profile">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profile
+                </a>
+                <div class="dropdown-divider"></div>
+                <form method="post" , action="/logout">
+                  <button class="dropdown-item" type="submit" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                  </button>
+                </form>
+              </div>
+            </li>
+          </ul>
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+          <style>
+            h2 {
+              text-align: center;
+            }
+          </style>
+          <h2>
+            <%= title %>
+          </h2>
+
+          <div class="row shadow">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Liste Des Charges: </h6>
+            </div>
+            <div class="row">
+              <table class="table table-stripped table-hover table-bordered display"
+                style="position: relative; width:100%;">
+                <thead>
+
+                </thead>
+                <tbody style="overflow: auto;">
+                  <% charges.forEach(function(e){ %>
+                    <tr>
+
+                      <td
+                        onclick="openForm2('<%= e._id%>','<%= e.title%>','<%= e.lien%>','<%= e.description%>','<%= e.delai.toISOString().slice(0, 10) %>','<%= e.module.libelle%>')">
+                        <div><i class='fas fa-tasks' style='color:rgba(7, 57, 12, 0.828)'></i>
+                          <%= userPrenom %>
+                            <%= userNom %> a ajouté un nouveau devoir: <%= e.title%>.
+                        </div>
+
+                      </td>
+                      <td
+                        onclick="openForm2('<%= e._id%>','<%= e.title%>','<%= e.lien%>','<%= e.description%>','<%= e.delai.toISOString().slice(0, 10) %>','<%= e.module.libelle%>')">
+                        Date limite: <%= e.delai.toISOString().slice(0, 10) %>
+                      </td>
+
+                      <td>
+                        <div class="editcontainer"
+                          onclick="openForm('<%= e._id%>','<%= e.title%>','<%= e.lien%>','<%= e.description%>','<%= e.delai%>')">
+                          <i class="fas fa-edit optionicons"></i>
+
+                        </div>
+                      </td>
+                      <td>
+                        <div class="trashcontainer" onclick="location.href = 'charges/delete/<%= e._id %>';">
+                          <i class="fa fa-trash deleteicons"></i>
+                        </div>
+
+                      </td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <br><br>
+
+          <div class="row shadow">
+            <div class="py-3 card-header">
+              <h6 class="m-0 font-weight-bold text-primary">Ajouter une charge :
+              </h6>
+            </div>
+
+            <div class="row">
+              <form action="/prof/charges/save" method="POST" autocomplete="off">
+                <div class="form-row">
+                  <div class="col-sm-11 col-lg-5 codecontainer">
+                    <label>Title</label>
+                    <input type="text" class="form-control m-3" placeholder="title" name="title" required>
+                  </div>
+                  <div class="col-sm-11 col-lg-5 codecontainer">
+                    <label>Delai</label>
+                    <input type="date" class="form-control m-3" name="delai" required>
+
+                  </div>
+                  <div class="col-sm-11 col-lg-5 codecontainer">
+                    <label>Lien</label>
+                    <input type="text" class="form-control m-3" placeholder="lien" name="lien" required>
+                  </div>
+                  <div class="col-sm-11 col-lg-5 codecontainer">
+                    <label>Module</label>
+                    <select id="module" class="form-control m-3" placeholder="module" name="module" required>
+                      <% modules.forEach(function(e){ %>
+                        <option value="<%= e._id %>">
+                          <%= e.libelle %>
+                        </option>
+                        <% }); %>
+                    </select>
+
+                  </div>
+                  <div class="col-sm-11 col-lg-5 codecontainer">
+                    <label>Description</label>
+                    <input type="text" class="form-control m-3" placeholder="Description" name="description" required>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <button type="submit" class="btn btn-success m-3">Ajouter</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- /.container-fluid -->
+
+        </div>
+        <br><br>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright &copy; Naitelhaj Nafil 2022</span>
+            </div>
+          </div>
+        </footer>
+        <!-- End of Footer -->
+
+      </div>
+      <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <div class="loader-wrapper">
+      <span class="loader"><span class="loader-inner"></span></span>
+    </div>
+
+    <div class="form-popup" id="myForm">
+      <form id="formEdit_id" action="" method="POST" autocomplete="off" class="form-container">
+
+        <label>Edit Charges</label>
+        <input id=title type="text" placeholder="title" name="title" required>
+        <input id=delai type="date" name="delai" required>
+        <input id=lien type="text" placeholder="lien" name="lien" required>
+        <select id="module" placeholder="module" name="module" required>
+          <% modules.forEach(function(e){ %>
+            <option value="<%= e._id %>">
+              <%= e.libelle %>
+            </option>
+            <% }); %>
+        </select>
+        <input id=description type="text" placeholder="description" name="description">
+        <button type="submit" class="btn">Modify</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+      </form>
+    </div>
+
+
+
+
+    <div class="form-popup" id="myForm2">
+
+      <div class="form-container">
+
+        <h2 id="titileID" style="text-align:center;color:rgba(34, 17, 108, 0.727);font-weight: bold;"></h2>
+        <h6 id="delaiii" style="font-weight: bold;color:rgba(169, 19, 19, 0.727);text-align: right ;;"></h6>
+        <h6 style="font-weight: bold;color:rgba(34, 17, 108, 0.727);">Description:</h6>
+        <p id="descrip"></p>
+        <h6 style="font-weight: bold;color:rgba(34, 17, 108, 0.727);"> le lien du devoir ci-dessous:</h6>
+        <h6 id="lienoo" type=style="font-weight: bold;color:rgba(169, 19, 19, 0.727);"></h6>
+
+        <button type="button" class="btn cancel" onclick="closeForm2()">Close</button>
+      </div>
+    </div>
+
+
+    <script>
+
+      function openForm(id, title, lienn, descriptionn, delaii) {
+        document.getElementById("myForm").style.display = "block";
+        console.log(descriptionn)
+        $('#title').val(title);
+        $('#lien').val(lienn);
+        $('#description').val(descriptionn);
+        $('#delai').val(delaii);
+        document.getElementById("formEdit_id").action = "/prof/charges/update/" + id;
+      }
+      function openForm2(id, titlee, lienn, descriptionn, delaii, modulee) {
+        console.log(11);
+        document.getElementById("myForm2").style.display = "block";
+        console.log(lienn)
+        $('#title').val(titlee);
+        $('#lien').val(lienn);
+        $('#description').val(descriptionn);
+
+        var h1 = document.getElementById('titileID');
+        h1.innerHTML += titlee.toString();
+        var div = document.getElementById('descrip');
+        div.innerHTML += descriptionn.toString();
+        document.getElementById('lienoo').innerHTML += lienn.toString();
+
+        var d = document.getElementById('delaiii');
+        d.innerHTML += "Due :" + delaii.toString();
+
+
+      }
+
+      function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+
+
+      }
+      function closeForm2() {
+        document.getElementById("myForm2").remove();
+        location.reload();
+
+
+      }
+    </script>
+    <style>
+      .content_img {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        float: left;
+        margin-right: 10px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      /* Child Text Container */
+      .content_img div {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        align-items: center;
+        justify-content: center;
+        background: black;
+        color: white;
+        margin-bottom: 5px;
+        font-family: sans-serif;
+        opacity: 0;
+        visibility: hidden;
+        -webkit-transition: visibility 0s, opacity 0.5s linear;
+        transition: visibility 0s, opacity 0.5s linear;
+      }
+
+      .content_img div a {
+        font-size: 14px;
+      }
+
+      .deleteicons {
+        float: right;
+        cursor: pointer;
+      }
+
+      .trashcontainer .deleteicons:hover {
+        color: red;
+      }
+
+      .validatecontainer .deleteicons:hover {
+        color: green;
+      }
+
+      .trashcontainer,
+      .validatecontainer {
+        margin: 4px;
+        padding: 4px;
+        display: inline;
+      }
+
+      /* Hover on Parent Container */
+      .content_img:hover {
+        cursor: pointer;
+      }
+
+      .content_img:hover div {
+        width: 200px;
+        padding: 10px 15px;
+        visibility: visible;
+        text-align: center;
+        overflow: hidden;
+        opacity: 0.7;
+      }
+
+      .inputprofile {
+        width: 85% !important;
+        position: relative;
+      }
+    </style>
+    <style>
+      .content_img {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        float: left;
+        margin-right: 10px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      /* Child Text Container */
+      .content_img div {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        align-items: center;
+        justify-content: center;
+        background: black;
+        color: white;
+        margin-bottom: 5px;
+        font-family: sans-serif;
+        opacity: 0;
+        visibility: hidden;
+        -webkit-transition: visibility 0s, opacity 0.5s linear;
+        transition: visibility 0s, opacity 0.5s linear;
+      }
+
+      .content_img div a {
+        font-size: 14px;
+      }
+
+      .optionicons {
+        float: right;
+        cursor: pointer;
+      }
+
+      .editcontainer .optionicons:hover {
+        color: blue;
+      }
+
+      .validatecontainer .optionicons:hover {
+        color: green;
+      }
+
+      .editcontainer,
+      .validatecontainer {
+        margin: 4px;
+        padding: 4px;
+        display: inline;
+      }
+
+      /* Hover on Parent Container */
+      .content_img:hover {
+        cursor: pointer;
+      }
+
+      .content_img:hover div {
+        width: 200px;
+        padding: 10px 15px;
+        visibility: visible;
+        text-align: center;
+        overflow: hidden;
+        opacity: 0.7;
+      }
+
+      .inputprofile {
+        width: 85% !important;
+        position: relative;
+      }
+    </style>
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../js/jquery-3.6.0.js"></script>
+    <script src="../js/dataTables.bootstrap4.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.bundle.js"></script>
+    <script src="../js/jquery.dataTables.min.js"></script>
+    <script src="../js/dataTables.bootstrap5.min.js"></script>
+
+
+    <!-- Core plugin JavaScript-->
+    <script src="../js/jquery.easing.js"></script>
+    <script src="../js/dropzone.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin-2.js"></script>
+    <script src="../js/all.js"></script>
+
+    <script src="../js/blocs/blocs.js"></script>
+
+</body>
+
+</html>

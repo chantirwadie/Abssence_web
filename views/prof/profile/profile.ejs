@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <title>
+    <%= title %>
+  </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Custom fonts for this template-->
+  <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="../css/loader.css" rel="stylesheet" type="text/css">
+  <link href="../fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
+  <link href="../css/css.css" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="../css/sb-admin-2.css" rel="stylesheet">
+  <link href="../css/main.css" rel="stylesheet">
+  <link href="../css/dataTables.bootstrap5.min.css" rel="stylesheet">
+  <link href="../css/admin.css" rel="stylesheet" type="text/css">
+  <link href="../css/dropzone.css" rel="stylesheet" type="text/css">
+  <link href="../css/popupForm.css" rel="stylesheet" type="text/css">
+
+
+
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <li>
+        <div class="sidebar-brand d-flex align-items-center">
+          <div class="sidebar-brand-icon">
+            <img src="../images/user.png" alt="Omar" width="50" height="50" style="float: left;">
+          </div>
+          <div class="sidebar-brand-text mx-3">
+            <span style="font-size: 12px;margin: 5px;">
+              <%= userPrenom %>
+                <%= userNom %>
+            </span>
+          </div>
+        </div>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item">
+        <a class="nav-link" href="/dashboard">
+          <i class="fas fa-home fa-fw "></i>
+          <span>Dashboard</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Gestion
+      </div>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/prof/charges">
+          <i class="fas fa-tasks"></i>
+          <span>Charges</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/prof/emplois">
+          <i class="far fa-calendar-alt"></i>
+          <span>Emploits</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/prof/absences">
+          <i class="fas fa-user-check"></i>
+          <span>Absences</span></a>
+      </li>
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false" data-target="#hhhh">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                  <%= userPrenom %>
+                    <%= userNom %>
+                </span>
+                <img class="img-profile rounded-circle" src="../images/user.png">
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown"
+                id="hhhh">
+                <a class="dropdown-item" href="/prof/profile">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profile
+                </a>
+                <div class="dropdown-divider"></div>
+                <form method="post" , action="/logout">
+                  <button class="dropdown-item" type="submit" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                  </button>
+                </form>
+              </div>
+            </li>
+          </ul>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <div class="container">
+          <div class="main-body">
+
+
+            <div class="row gutters-sm">
+              <div class="col-md-4 mb-3">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex flex-column align-items-center text-center">
+                      <div class="content_img">
+                        <img src="../images/user.png" alt="Admin" class="rounded-circle profile-photo" width="100%"
+                          height="100%">
+                        <div><a data-bs-toggle="modal" data-bs-target="#imagemodal" style="text-decoration: none;"><i
+                              class="fas fa-camera"></i> Changer Photo</a></div>
+                      </div>
+                      <div class="mt-3">
+                        <h4>
+                          <%= userPrenom %>
+                            <%= userNom %>
+                        </h4>
+                        <p class="text-secondary mb-1">
+                          <%= userRole %>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md-8">
+                <div class="card mb-3">
+                  <div class="card-body formcontainer">
+                    <form method="post" , action="/prof/profile/update/nom">
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Nom</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary nomcontainer success-container">
+                          <input type="text" name="nom" id="nom" class="inputprofile text-secondary"
+                            value="<%= user.nom %>">
+                          <div class="editcontainer">
+                            <i class="fas fa-edit optionicons"></i>
+                          </div>
+                          <div class="validatecontainer">
+                            <button class="fas fa-check optionicons" type="submit"></button>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                    <hr>
+                    <form method="post" , action="/prof/profile/update/prenom">
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Prenom</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary prenomcontainer success-container">
+                          <input type="text" name="prenom" id="prenom" class="inputprofile text-secondary"
+                            value="<%= user.prenom %>">
+                          <div class="editcontainer">
+                            <i class="fas fa-edit optionicons"></i>
+                          </div>
+                          <div class="validatecontainer">
+                            <button class="fas fa-check optionicons" type="submit"></button>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                    <hr>
+                    <form method="post" , action="/prof/profile/update/email">
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Email</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary emailcontainer success-container">
+                          <input type="email" name="email" id="email" class="inputprofile text-secondary"
+                            value="<%= user.email %>">
+                          <div class="editcontainer">
+                            <i class="fas fa-edit optionicons"></i>
+                          </div>
+                          <div class="validatecontainer">
+                            <button class="fas fa-check optionicons" type="submit"></button>
+                          </div>
+
+                        </div>
+                      </div>
+                    </form>
+                    <hr>
+                    <form method="post" , action="/prof/profile/update/cin">
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">CIN</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary cincontainer success-container">
+                          <input type="text" name="cin" id="cin" class="inputprofile text-secondary"
+                            value="<%= user.cin %>">
+                          <div class="editcontainer">
+                            <i class="fas fa-edit optionicons"></i>
+                          </div>
+                          <div class="validatecontainer">
+                            <button class="fas fa-check optionicons" type="submit"></button>
+                          </div>
+
+                        </div>
+                      </div>
+                    </form>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <h6 class="mb-0">Role</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                        <%= user.role %>
+                      </div>
+                    </div>
+                    <hr>
+
+                  </div>
+                </div>
+                <div class="row gutters-sm">
+                  <div class="col-sm-12 mb-3">
+                    <div class="card h-100">
+                      <div class="card-body">
+                        <h6 class="d-flex align-items-center text-info mb-3">Changer Mot de passe</h6>
+
+                        <form method="post" , action="prof/profile/update/password">
+                          <input type="hidden" name="op" value="password">
+                          <div class="form-group oldpasswordcontainer">
+                            <label for="oldpassword">Ancien mot de passe</label>
+                            <input type="password" name="oldpassword" id="oldpassword" class="form-control">
+                          </div>
+                          <div class="form-group newpasswordcontainer">
+                            <label for="newpassword">Nouveau mot de passe</label>
+                            <input type="password" name="newpassword" id="newpassword" class="form-control">
+                          </div>
+                          <div class="form-group newpassword_confirmationcontainer">
+                            <label for="newpassword_confirmation">Confirmer le nouveau mot de passe</label>
+                            <input type="password" name="newpassword_confirmation" id="newpassword_confirmation"
+                              class="form-control">
+                          </div>
+                          <div class="form-group">
+                            <button type="submit" class="btn btn-success" id="submitpassword" disabled>Changer</button>
+                            <button type="reset" class="btn btn-success">Réinitialiser</button>
+                          </div>
+                        </form>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <!-- Modal -->
+              <div class="modal fade" id="imagemodal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <form action="" method="post" enctype="multipart/form-data">
+                    <input type="text" name="op" value="image" hidden>
+                    <div class="modal-content">
+                      <div class="modal-header bg-info" style="color: white;">
+                        <h5 class="modal-title" id="exampleModalLabel">Uploader image</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="form-row">
+                          <div class="col-sm-11 m-2">
+                            <input type="file" class="custom-file-input py-2" name="file" id="customFile">
+                            <label class="custom-file-label" for="customFile">Choisissez une image</label>
+                          </div>
+                          <div class="col-sm-11 m-2">
+                            <button type="submit" class="btn btn-primary m-1" style="float: right">Enregistrer</button>
+                            <button type="reset" class="btn btn-info m-1" style="float: right">Réinitialiser</button>
+                            <button type="button" class="btn btn-secondary m-1" data-bs-dismiss="modal"
+                              style="float: right">Close</button>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+
+              <style>
+                .content_img {
+                  position: relative;
+                  width: 200px;
+                  height: 200px;
+                  float: left;
+                  margin-right: 10px;
+                  border-radius: 50%;
+                  overflow: hidden;
+                }
+
+                /* Child Text Container */
+                .content_img div {
+                  position: absolute;
+                  bottom: 0;
+                  right: 0;
+                  left: 0;
+                  align-items: center;
+                  justify-content: center;
+                  background: black;
+                  color: white;
+                  margin-bottom: 5px;
+                  font-family: sans-serif;
+                  opacity: 0;
+                  visibility: hidden;
+                  -webkit-transition: visibility 0s, opacity 0.5s linear;
+                  transition: visibility 0s, opacity 0.5s linear;
+                }
+
+                .content_img div a {
+                  font-size: 14px;
+                }
+
+                .optionicons {
+                  float: right;
+                  cursor: pointer;
+                }
+
+                .editcontainer .optionicons:hover {
+                  color: blue;
+                }
+
+                .validatecontainer .optionicons:hover {
+                  color: green;
+                }
+
+                .editcontainer,
+                .validatecontainer {
+                  margin: 4px;
+                  padding: 4px;
+                  display: inline;
+                }
+
+                /* Hover on Parent Container */
+                .content_img:hover {
+                  cursor: pointer;
+                }
+
+                .content_img:hover div {
+                  width: 200px;
+                  padding: 10px 15px;
+                  visibility: visible;
+                  text-align: center;
+                  overflow: hidden;
+                  opacity: 0.7;
+                }
+
+                .inputprofile {
+                  width: 85% !important;
+                  position: relative;
+                }
+              </style>
+
+
+              <!-- Bootstrap core JavaScript-->
+              <script src="../js/jquery-3.6.0.js"></script>
+              <script src="../js/dataTables.bootstrap4.js"></script>
+              <script src="../js/bootstrap.min.js"></script>
+              <script src="../js/bootstrap.bundle.js"></script>
+              <script src="../js/jquery.dataTables.min.js"></script>
+              <script src="../js/dataTables.bootstrap5.min.js"></script>
+
+
+              <!-- Core plugin JavaScript-->
+              <script src="../js/jquery.easing.js"></script>
+              <script src="../js/dropzone.js"></script>
+
+              <!-- Custom scripts for all pages-->
+              <script src="../js/all.js"></script>
+              <script src="../js/sb-admin-2.js"></script>
+
+
+              <script src="../js/blocs/blocs.js"></script>
+
+</body>
+
+</html>

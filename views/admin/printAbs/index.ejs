@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>
+        <%= title %>
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/emploi.css">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../css/loader.css" rel="stylesheet" type="text/css">
+    <link href="../fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
+    <link href="../css/css.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin-2.css" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet">
+    <link href="../css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link href="../css/admin.css" rel="stylesheet" type="text/css">
+    <link href="../css/dropzone.css" rel="stylesheet" type="text/css">
+    <link href="../css/popupForm.css" rel="stylesheet" type="text/css">
+
+
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+
+            <div class="row shadow">
+                <div class="card-header py-3">
+                    <h3 style="text-align: center;" class="m-0 font-weight-bold text-primary">Liste Des Absences
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Filiere : <%= filiere.code %>
+                    </h3>
+                </div>
+                <div class="row">
+                    <table style="width:100%" class="table table-hover display" style="position: relative; width:100%;">
+                        <thead>
+                            <tr>
+                                <th style="width:40%" scope="col">Prenom et Nom</th>
+                                <th style="width:20%" scope="col">Filière</th>
+                                <th style="width:20%" scope="col">Absences Justufié</th>
+                                <th style="width:20%" scope="col">Absences non Justufié</th>
+                            </tr>
+                        </thead>
+                        <tbody style="overflow: auto;">
+                            <% array.forEach(function(e){ %>
+                                <tr onclick="post('<%= e.idEtud %>')">
+                                    <td>
+                                        <%= e.nomPrenom %>
+                                    </td>
+                                    <td>
+                                        <%= e.filiere %>
+                                    </td>
+                                    <td>
+                                        <%= e.nbrJ %>
+                                    </td>
+                                    <td>
+                                        <%= e.nbrNJ %>
+                                    </td>
+                                </tr>
+                                <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <br><br>
+
+
+        </div>
+        <br><br>
+
+        <!-- End of Main Content -->
+
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../js/jquery-3.6.0.js"></script>
+    <script src="../js/dataTables.bootstrap4.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.bundle.js"></script>
+    <script src="../js/jquery.dataTables.min.js"></script>
+    <script src="../js/dataTables.bootstrap5.min.js"></script>
+
+
+    <!-- Core plugin JavaScript-->
+    <script src="../js/jquery.easing.js"></script>
+    <script src="../js/dropzone.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin-2.js"></script>
+    <script src="../js/all.js"></script>
+
+    <script>
+        $(window).on("load", function () {
+            $('.display').DataTable({ searching: false, paging: false, info: false });
+        })
+    </script>
+
+</body>
+
+</html>
